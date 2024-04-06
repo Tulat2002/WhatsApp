@@ -19,6 +19,12 @@ public class GlobleException {
         return new ResponseEntity<ErrorDetail>(err, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(ChatException.class)
+    public ResponseEntity<ErrorDetail> ChatExceptionHandler(ChatException ue, WebRequest req){
+        ErrorDetail err = new ErrorDetail(ue.getMessage(), req.getDescription(false), LocalDateTime.now());
+        return new ResponseEntity<ErrorDetail>(err, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(MessageExeption.class)
     public ResponseEntity<ErrorDetail> MessageExceptionHandler(MessageExeption ue, WebRequest req){
         ErrorDetail err = new ErrorDetail(ue.getMessage(), req.getDescription(false), LocalDateTime.now());
